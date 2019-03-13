@@ -6,6 +6,12 @@
 package Hospital;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import java.awt.print.PrinterException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -13,6 +19,7 @@ import javax.swing.JFrame;
  */
 public class Hospital extends javax.swing.JFrame {
 private JFrame frame;
+    private Object jtxtPrescription;
     /**
      * Creates new form Hospital
      */
@@ -36,19 +43,19 @@ private JFrame frame;
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jBtnUpdate = new javax.swing.JButton();
+        jBtnDelete = new javax.swing.JButton();
+        jBtnDoctor = new javax.swing.JButton();
+        jBtnGPAppointment = new javax.swing.JButton();
+        jBtnPatient = new javax.swing.JButton();
+        jBtnReset = new javax.swing.JButton();
+        jBtnPrint = new javax.swing.JButton();
+        jBtnPrescription = new javax.swing.JButton();
+        jBtnExit = new javax.swing.JButton();
+        jBtnLogin = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jCmbNameofTablet = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -106,7 +113,7 @@ private JFrame frame;
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField1.setText("jTextField1");
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 380, 440));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 380, 430));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 110, 410, 450));
 
@@ -126,65 +133,70 @@ private JFrame frame;
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnUpdate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnUpdate.setText("Update");
+        jBtnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBtnUpdateActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 130, -1));
+        jPanel4.add(jBtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 130, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setText("Delete");
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 110, -1));
+        jBtnDelete.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnDelete.setText("Delete");
+        jPanel4.add(jBtnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 110, -1));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton3.setText("Doctor");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBtnDoctor.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnDoctor.setText("Doctor");
+        jBtnDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBtnDoctorActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 110, -1));
+        jPanel4.add(jBtnDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 110, -1));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton4.setText("GP Appointment");
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 180, -1));
+        jBtnGPAppointment.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnGPAppointment.setText("GP Appointment");
+        jPanel4.add(jBtnGPAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 180, -1));
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton5.setText("Patient ");
-        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 110, -1));
+        jBtnPatient.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnPatient.setText("Patient ");
+        jPanel4.add(jBtnPatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 110, -1));
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton6.setText("Reset");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jBtnReset.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnReset.setText("Reset");
+        jBtnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jBtnResetActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 110, -1));
+        jPanel4.add(jBtnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 110, -1));
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton9.setText("Print");
-        jPanel4.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 10, 150, -1));
-
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton8.setText("Prescription ");
-        jPanel4.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 150, -1));
-
-        jButton10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton10.setText("Exit");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jBtnPrint.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnPrint.setText("Print");
+        jBtnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jBtnPrintActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 10, 180, 30));
+        jPanel4.add(jBtnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 10, 150, -1));
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton7.setText("Login");
-        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 140, -1));
+        jBtnPrescription.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnPrescription.setText("Prescription ");
+        jPanel4.add(jBtnPrescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 150, -1));
+
+        jBtnExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnExit.setText("Exit");
+        jBtnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnExitActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jBtnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 10, 180, 30));
+
+        jBtnLogin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnLogin.setText("Login");
+        jPanel4.add(jBtnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 140, -1));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 570, 1380, 50));
 
@@ -205,9 +217,14 @@ private JFrame frame;
         jLabel3.setText("Name of Tablet");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Make a selection", "Ibuprofen", "co-codemol", "paracetamol", "aminodopine" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, -1, -1));
+        jCmbNameofTablet.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCmbNameofTablet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Make a selection", "Ibuprofen", "co-codemol", "paracetamol", "aminodopine" }));
+        jCmbNameofTablet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCmbNameofTabletActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jCmbNameofTablet, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Reference No:");
@@ -344,28 +361,48 @@ private JFrame frame;
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 1360, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 610, 1360, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBtnUpdateActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBtnDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDoctorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jBtnDoctorActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jBtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnResetActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_jBtnResetActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void jBtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExitActionPerformed
+        frame = new JFrame ();
+        if (JOptionPane.showConfirmDialog(frame, "Confirm if you want to exit", "Hospital Management System",
+             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jBtnExitActionPerformed
 
-        frame = new JFrame();
-        if (JOptionPane.showConfirmDialog(frame, "Confirm if you want to exit", "Hospital Management System",)  // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void jBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPrintActionPerformed
+        try {
+            jtxtPrescription.print ();
+        }catch(PrinterException ex){
+            Logger.getLogger(Hospital.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnPrintActionPerformed
+
+    private void jCmbNameofTabletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbNameofTabletActionPerformed
+       if (jCmbNameofTablet.getSelectedItem().equals("Ibuprofen"))
+       {
+           jtxtRef.setText("Ibu8568959");
+           
+       }
+           // TODO add your handling code here:
+    }//GEN-LAST:event_jCmbNameofTabletActionPerformed
 
     /**
      * @param args the command line arguments
@@ -403,17 +440,17 @@ private JFrame frame;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jBtnDelete;
+    private javax.swing.JButton jBtnDoctor;
+    private javax.swing.JButton jBtnExit;
+    private javax.swing.JButton jBtnGPAppointment;
+    private javax.swing.JButton jBtnLogin;
+    private javax.swing.JButton jBtnPatient;
+    private javax.swing.JButton jBtnPrescription;
+    private javax.swing.JButton jBtnPrint;
+    private javax.swing.JButton jBtnReset;
+    private javax.swing.JButton jBtnUpdate;
+    private javax.swing.JComboBox jCmbNameofTablet;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
